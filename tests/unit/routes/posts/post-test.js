@@ -2,7 +2,7 @@ import { module, test } from "qunit"
 import { setupTest } from "blog/tests/helpers"
 import Service from "@ember/service"
 
-module("Unit | Route | post", function (hooks) {
+module("Unit | Route | posts/post", function (hooks) {
   setupTest(hooks)
 
   test("model finds a post by id", function (assert) {
@@ -11,7 +11,7 @@ module("Unit | Route | post", function (hooks) {
     }
     this.owner.register("service:posts", PostsStub)
 
-    let route = this.owner.lookup("route:post")
+    let route = this.owner.lookup("route:posts/post")
     let model = route.model({ id: "xyz" })
 
     assert.deepEqual(model, { id: "xyz", title: "Title" })

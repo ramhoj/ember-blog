@@ -7,7 +7,7 @@
 <ul>
   {{#each this.model as |post|}}
     <li data-test-post>
-      <LinkTo @route="post" @model={{post.id}}>
+      <LinkTo @route="posts.post" @model={{post.id}}>
         {{post.title}}
       </LinkTo>
     </li>
