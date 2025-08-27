@@ -1,8 +1,10 @@
 import Route from "@ember/routing/route"
-import { POSTS } from "blog/data/posts"
+import { service } from "@ember/service"
 
 export default class PostsRoute extends Route {
+  @service posts
+
   model() {
-    return POSTS
+    return this.posts.all()
   }
 }
