@@ -7,6 +7,8 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
-  this.route("posts")
+  this.route("posts", function() {
+    this.route("new")
+  })
   this.route("post", { path: "/posts/:id" })
 })

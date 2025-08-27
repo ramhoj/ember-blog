@@ -2,6 +2,8 @@
 
 <h1>Posts</h1>
 
+<p><LinkTo @route="posts.new">New Post</LinkTo></p>
+
 <ul>
   {{#each this.model as |post|}}
     <li data-test-post>
@@ -11,3 +13,5 @@
     </li>
   {{/each}}
 </ul>
+
+{{outlet}}
