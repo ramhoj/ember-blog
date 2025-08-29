@@ -7,7 +7,9 @@ module("Unit | Route | posts/post", function (hooks) {
 
   test("model finds a post by id", function (assert) {
     class PostsStub extends Service {
-      find(id) { return { id, title: "Title" } }
+      find(id) {
+        return { id, title: "Title" }
+      }
     }
     this.owner.register("service:posts", PostsStub)
 

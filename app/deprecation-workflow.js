@@ -1,4 +1,4 @@
-import setupDeprecationWorkflow from 'ember-cli-deprecation-workflow';
+import setupDeprecationWorkflow from "ember-cli-deprecation-workflow"
 
 /**
  * Docs: https://github.com/ember-cli/ember-cli-deprecation-workflow
@@ -20,5 +20,5 @@ setupDeprecationWorkflow({
      */
     /* example: */
     /* { handler: 'silence', matchId: 'template-action' }, */
-  ],
-});
+  ]
+})

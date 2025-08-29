@@ -17,7 +17,7 @@ export default class PostsService extends Service {
   }
 
   find(id) {
-    return this.posts.find(post => post.id === id)
+    return this.posts.find((post) => post.id === id)
   }
 
   #load() {

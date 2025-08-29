@@ -80,5 +80,11 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "prettier": {
+    "trailingComma": "none",
+    "semi": false,
+    "singleQuote": false,
+    "printWidth": 120
   }
 }
