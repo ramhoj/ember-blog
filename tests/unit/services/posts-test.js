@@ -1,27 +1,37 @@
 import { module, test } from "qunit"
 import { setupTest } from "ember-qunit"
-import config from "blog/config/environment"
-
-const STORAGE_KEY = `blog-posts-v1-${config.environment}`
+import { storePosts, getPosts } from "blog/tests/helpers/storage"
 
 module("Unit | Service | posts", function (hooks) {
   setupTest(hooks)
 
   hooks.beforeEach(function () {
-    localStorage.removeItem(STORAGE_KEY)
+    this.posts = () => this.owner.lookup("service:posts")
   })
 
   test("returns [] when storage is empty", function (assert) {
-    let service = this.owner.lookup("service:posts")
-    assert.deepEqual(service.all(), [])
+    assert.deepEqual(this.posts().all(), [])
   })
 
   test("reads posts from localStorage", function (assert) {
     let data = [{ id: "a", title: "A", body: "" }]
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+    storePosts(data)
 
-    let service = this.owner.lookup("service:posts")
-    assert.deepEqual(service.all(), data)
-    assert.strictEqual(service.find("a").title, "A")
+    assert.deepEqual(this.posts().all(), data)
+    assert.strictEqual(this.posts().find("a").title, "A")
+  })
+
+  test("create persists, returns created post and updates all()", function (assert) {
+    let created = this.posts().create({ title: "Hello Ember", body: "First post" })
+
+    assert.deepEqual(created, { id: "hello-ember", title: "Hello Ember", body: "First post" })
+    assert.strictEqual(this.posts().find("hello-ember").title, "Hello Ember")
+    assert.deepEqual(this.posts().all().map((post) => post.id), ["hello-ember"])
+    assert.deepEqual(getPosts(), [created])
+  })
+
+  test("create slugifies title", function (assert) {
+    let created = this.posts().create({ title: "Hello_World!!  2025", body: "" })
+    assert.strictEqual(created.id, "hello-world-2025")
   })
 })

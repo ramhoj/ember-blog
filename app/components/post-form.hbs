@@ -1,0 +1,13 @@
+<form {{on "submit" this.submit}}>
+  <div>
+    <label for="title">Title</label>
+    <input id="title" name="title" type="text" value={{this.title}} {{on "input" this.updateTitle}}>
+  </div>
+
+  <div>
+    <label for="body">Body</label>
+    <textarea id="body" name="body" value={{this.body}} {{on "input" this.updateBody}}></textarea>
+  </div>
+
+  <button type="submit">Save</button>
+</form>
