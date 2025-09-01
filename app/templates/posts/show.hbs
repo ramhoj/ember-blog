@@ -5,5 +5,7 @@
   <p data-test-body>{{this.model.body}}</p>
 </article>
 
-<p><LinkTo @route="posts.edit" @model={{this.model.id}}>Edit</LinkTo></p>
-<p><LinkTo @route="posts">Back to posts</LinkTo></p>
+<p>
+  <LinkTo @route="posts.edit" @model={{this.model.id}}>Edit</LinkTo>
+  <LinkTo @route="posts">Back to posts</LinkTo>
+</p>

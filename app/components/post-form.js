@@ -6,6 +6,12 @@ export default class PostFormComponent extends Component {
   @tracked title = ""
   @tracked body = ""
 
+  constructor() {
+    super(...arguments)
+    this.title = this.args.model?.title ?? ""
+    this.body = this.args.model?.body ?? ""
+  }
+
   @action updateTitle(event) {
     this.title = event.target.value
   }

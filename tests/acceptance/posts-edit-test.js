@@ -1,6 +1,6 @@
 import { module, test } from "qunit"
 import { setupApplicationTest } from "ember-qunit"
-import { visit, click, currentURL } from "@ember/test-helpers"
+import { visit, click, currentURL, fillIn } from "@ember/test-helpers"
 import { storePosts } from "blog/tests/helpers/storage"
 
 module("Acceptance | posts edit", function (hooks) {
@@ -12,7 +12,12 @@ module("Acceptance | posts edit", function (hooks) {
     await visit("/posts/a")
     await click('a[href="/posts/a/edit"]')
 
-    assert.equal(currentURL(), "/posts/a/edit")
-    assert.dom("h2").hasText("Edit Post")
+    await fillIn("input[name='title']", "B")
+    await fillIn("textarea[name='body']", "Beta")
+    await click("button[type='submit']")
+
+    assert.strictEqual(currentURL(), "/posts/a")
+    assert.dom("[data-test-title]").hasText("B")
+    assert.dom("[data-test-body]").hasText("Beta")
   })
 })

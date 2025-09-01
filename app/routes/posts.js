@@ -5,6 +5,6 @@ export default class PostsRoute extends Route {
   @service posts
 
   model() {
-    return this.posts.all()
+    return this.posts
   }
 }

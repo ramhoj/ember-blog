@@ -5,7 +5,7 @@
 <p><LinkTo @route="posts.new">New Post</LinkTo></p>
 
 <ul>
-  {{#each this.model as |post|}}
+  {{#each this.model.posts as |post|}}
     <li data-test-post>
       <LinkTo @route="posts.show" @model={{post.id}}>
         {{post.title}}

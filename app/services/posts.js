@@ -12,10 +12,6 @@ export default class PostsService extends Service {
     this.posts = this.#load()
   }
 
-  all() {
-    return this.posts
-  }
-
   find(id) {
     return this.posts.find((post) => post.id === id)
   }
@@ -24,9 +20,23 @@ export default class PostsService extends Service {
     let id = this.#slugify(title)
     let created = { id, title, body: body ?? ""}
     this.posts = [...this.posts, created]
-    this.#save(this.posts)
+    this.#persist(this.posts)
 
     return created
+  }
+
+  update(id, attributes) {
+    this.posts = this.posts.map((post) =>
+      post.id === id ? { ...post, ...attributes, id: post.id } : post
+    )
+    this.#persist(this.posts)
+
+    return this.find(id)
+  }
+
+  destroy(id) {
+    this.posts = this.posts.filter((post) => post.id !== id)
+    this.#persist(this.posts)
   }
 
   #load() {
@@ -38,7 +48,7 @@ export default class PostsService extends Service {
     return String(string).toLowerCase().trim().replace(/[\W_]+/g, "-").replace(/(^-|-$)/g, "")
   }
 
-  #save(posts) {
+  #persist(posts) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(posts))
   }
 }

@@ -117,5 +117,11 @@ export default [
         ...globals.node
       }
     }
+  },
+  {
+    files: ["app/services/posts.js"],
+    rules: {
+      "ember/classic-decorator-hooks": "off"
+    }
   }
 ]

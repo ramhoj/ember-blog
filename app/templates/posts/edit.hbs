@@ -2,4 +2,9 @@
 
 <h2>Edit Post</h2>
 
-<p><LinkTo @route="posts.show" @model={{this.model.id}}>Back</LinkTo></p>
+<PostForm @model={{this.model}} @onSave={{this.update}} />
+
+<p>
+  <button type="button" data-test-destroy-button {{on "click" this.delete}}>Delete</button>
+  <LinkTo @route="posts.show" @model={{this.model.id}}>Back</LinkTo>
+</p>
