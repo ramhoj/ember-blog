@@ -4,6 +4,16 @@ const EmberApp = require("ember-cli/lib/broccoli/ember-app")
 
 module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
+    postcssOptions: {
+      compile: {
+        enabled: true,
+        cacheInclude: [/\.(css|hbs|js|ts)$/i, /tailwind\.config\.js$/],
+        plugins: [
+          require("tailwindcss")("./tailwind.config.js"),
+          require("autoprefixer")
+        ]
+      }
+    },
     emberData: {
       deprecations: {
         // New projects can safely leave this deprecation disabled.

@@ -86,7 +86,10 @@ export default [
       ".prettierrc.js",
       ".stylelintrc.js",
       ".template-lintrc.js",
-      "ember-cli-build.js"
+      "ember-cli-build.js",
+      "postcss.config.js",
+      "stylelint.config.js",
+      "tailwind.config.js"
     ],
     plugins: {
       n
