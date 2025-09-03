@@ -1,13 +1,15 @@
-<form {{on "submit" this.submit}}>
+<form {{on "submit" this.submit}} class="space-y-4">
   <div>
-    <label for="title">Title</label>
-    <input id="title" name="title" type="text" value={{this.title}} {{on "input" this.updateTitle}}>
+    <label for="title" class="block text-sm font-medium mb-1">Title</label>
+    <input id="title" name="title" type="text" value={{this.title}} {{on "input" this.updateTitle}} class="input">
   </div>
 
   <div>
-    <label for="body">Body</label>
-    <textarea id="body" name="body" value={{this.body}} {{on "input" this.updateBody}}></textarea>
+    <label for="body" class="block text-sm font-medium mb-1">Body</label>
+    <textarea id="body" name="body" value={{this.body}} {{on "input" this.updateBody}} class="textarea"></textarea>
   </div>
 
-  <button type="submit">Save</button>
+  <div class="flex items-center gap-2">
+    <button type="submit" class="btn-primary">Save</button>
+  </div>
 </form>

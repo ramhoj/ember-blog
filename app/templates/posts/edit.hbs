@@ -1,10 +1,18 @@
 {{page-title "Edit Post"}}
 
-<h2>Edit Post</h2>
+<div class="mb-6 flex items-center justify-between">
+  <h1 class="text-3xl font-bold tracking-tight">Edit Post</h1>
+  <LinkTo @route="posts.show" @model={{this.model.id}} class="btn-secondary">Back</LinkTo>
+</div>
 
-<PostForm @model={{this.model}} @onSave={{this.update}} />
+<div class="card">
+  <div class="card-body space-y-4">
+    <PostForm @model={{this.model}} @onSave={{this.update}} />
 
-<p>
-  <button type="button" data-test-destroy-button {{on "click" this.delete}}>Delete</button>
-  <LinkTo @route="posts.show" @model={{this.model.id}}>Back</LinkTo>
-</p>
+    <div>
+      <button type="button" {{on "click" this.delete}} data-test-destroy-button class="btn-secondary">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>

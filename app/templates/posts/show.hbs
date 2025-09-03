@@ -1,11 +1,15 @@
 {{page-title "Post"}}
 
-<article>
-  <h2 data-test-title>{{this.model.title}}</h2>
-  <p data-test-body>{{this.model.body}}</p>
-</article>
+<div class="mb-6 flex items-center justify-between">
+  <h1 class="text-3xl font-bold tracking-tight">{{this.model.title}}</h1>
+  <div class="flex items-center gap-2">
+    <LinkTo @route="posts.edit" @model={{this.model.id}} class="btn-secondary">Edit</LinkTo>
+    <LinkTo @route="posts" class="btn-secondary">Back</LinkTo>
+  </div>
+</div>
 
-<p>
-  <LinkTo @route="posts.edit" @model={{this.model.id}}>Edit</LinkTo>
-  <LinkTo @route="posts">Back to posts</LinkTo>
-</p>
+<div class="card">
+  <div class="card-body">
+    <p class="text-slate-700 whitespace-pre-line">{{this.model.body}}</p>
+  </div>
+</div>
