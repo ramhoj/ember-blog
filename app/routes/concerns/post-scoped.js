@@ -1,7 +1,7 @@
 import Route from "@ember/routing/route"
 import { service } from "@ember/service"
 
-export default class PostsScopedRoute extends Route {
+export default class PostScopedRoute extends Route {
   @service posts
 
   model({ id }) {

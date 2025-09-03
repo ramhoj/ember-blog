@@ -13,7 +13,7 @@ module("Unit | Route | posts/show", function (hooks) {
     }
     this.owner.register("service:posts", PostsStub)
 
-    let route = this.owner.lookup("route:posts/show")
+    let route = this.owner.lookup("route:post")
     let model = route.model({ id: "xyz" })
 
     assert.deepEqual(model, { id: "xyz", title: "Title" })

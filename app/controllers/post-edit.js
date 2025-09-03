@@ -8,7 +8,7 @@ export default class PostsEditController extends Controller {
 
   @action update({ title, body }) {
     this.posts.update(this.model.id, { title, body })
-    this.router.transitionTo("posts.show", this.model.id)
+    this.router.transitionTo("post", this.model.id)
   }
 
   @action delete() {

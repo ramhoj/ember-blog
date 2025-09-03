@@ -1,12 +1,12 @@
 <form {{on "submit" this.submit}} class="space-y-4">
   <div>
     <label for="title" class="block text-sm font-medium mb-1">Title</label>
-    <input id="title" name="title" type="text" value={{this.title}} {{on "input" this.updateTitle}} class="input">
+    <input id="title" name="title" type="text" value={{@model.title}} {{on "input" this.updateTitle}} class="input">
   </div>
 
   <div>
     <label for="body" class="block text-sm font-medium mb-1">Body</label>
-    <textarea id="body" name="body" value={{this.body}} {{on "input" this.updateBody}} class="textarea"></textarea>
+    <textarea id="body" name="body" value={{@model.body}} {{on "input" this.updateBody}} class="textarea"></textarea>
   </div>
 
   <div class="flex items-center gap-2">

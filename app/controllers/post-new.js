@@ -8,6 +8,6 @@ export default class PostsNewController extends Controller {
 
   @action create({ title, body }) {
     let created = this.posts.create({ title, body })
-    this.router.transitionTo("posts.show", created.id)
+    this.router.transitionTo("post", created.id)
   }
 }
