@@ -2,19 +2,17 @@
 
 <div class="flex items-center justify-between mb-6">
   <h1 class="text-3xl font-bold tracking-tight">Posts</h1>
-  <LinkTo @route="posts.new" class="btn-primary">New Post</LinkTo>
+  <LinkTo @route="post-new" class="btn-primary">New Post</LinkTo>
 </div>
 
 <ul class="space-y-3">
   {{#each this.model.posts as |post|}}
     <li data-test-post class="card">
       <div class="card-body flex items-center justify-between">
-        <LinkTo @route="posts.show" @model={{post.id}} class="font-medium hover:underline">
+        <LinkTo @route="post" @model={{post.id}} class="font-medium hover:underline">
           {{post.title}}
         </LinkTo>
       </div>
     </li>
   {{/each}}
 </ul>
-
-{{outlet}}

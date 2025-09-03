@@ -1,8 +1,8 @@
 {{page-title "Edit Post"}}
 
 <div class="mb-6 flex items-center justify-between">
-  <h1 class="text-3xl font-bold tracking-tight">Edit Post</h1>
-  <LinkTo @route="posts.show" @model={{this.model.id}} class="btn-secondary">Back</LinkTo>
+  <h1 class="text-3xl font-bold tracking-tight">Edit ‘{{this.model.title}}’</h1>
+  <LinkTo @route="post" @model={{this.model.id}} class="btn-secondary">Back</LinkTo>
 </div>
 
 <div class="card">

@@ -1,0 +1,17 @@
+{{page-title "Post"}}
+
+<div class="mb-6 flex items-center justify-between">
+  <h1 data-test-title class="text-3xl font-bold tracking-tight">{{this.model.title}}</h1>
+  <div class="flex items-center gap-2">
+    <LinkTo @route="post-edit" @model={{this.model.id}} class="btn-secondary">Edit</LinkTo>
+    <LinkTo @route="posts" class="btn-secondary">Back</LinkTo>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <p data-test-body class="text-slate-700 whitespace-pre-line">{{this.model.body}}</p>
+  </div>
+</div>
+
+{{outlet}}
