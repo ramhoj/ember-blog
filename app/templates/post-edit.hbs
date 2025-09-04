@@ -7,12 +7,6 @@
 
 <div class="card">
   <div class="card-body space-y-4">
-    <PostForm @model={{this.model}} @onSave={{this.update}} />
-
-    <div>
-      <button type="button" {{on "click" this.delete}} data-test-destroy-button class="btn-secondary">
-        Delete
-      </button>
-    </div>
+    <PostForm @model={{this.model}} @onSave={{this.update}} @onDelete={{this.delete}} />
   </div>
 </div>

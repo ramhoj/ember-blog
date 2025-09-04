@@ -24,4 +24,8 @@ export default class PostFormComponent extends Component {
     event.preventDefault()
     this.args.onSave({ title: this.title, body: this.body })
   }
+
+  @action delete() {
+    this.args.onDelete()
+  }
 }

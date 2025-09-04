@@ -11,5 +11,11 @@
 
   <div class="flex items-center gap-2">
     <button type="submit" class="btn-primary">Save</button>
+
+    {{#if @onDelete}}
+      <button type="button" {{on "click" this.delete}} data-test-destroy-button class="btn-secondary">
+        Delete
+      </button>
+    {{/if}}
   </div>
 </form>
