@@ -19,7 +19,7 @@ export default class PostFormComponent extends Component {
   @action updateBody(event) {
     this.body = event.target.value
   }
-  
+
   @action submit(event) {
     event.preventDefault()
     this.args.onSave({ title: this.title, body: this.body })
