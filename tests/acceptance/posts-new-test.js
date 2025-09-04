@@ -9,6 +9,6 @@ module("Acceptance | posts new", function (hooks) {
     await visit("/posts")
     await click('a[href="/posts/new"]')
     assert.equal(currentURL(), "/posts/new")
-    assert.dom("h2").hasText("New Post")
+    assert.dom("h1").hasText("New Post")
   })
 })

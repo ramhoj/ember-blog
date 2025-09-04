@@ -1,7 +1,8 @@
 {{page-title "New Post"}}
 
-<h2>New Post</h2>
+<div class="mb-6 flex items-center justify-between">
+  <h1 class="text-3xl font-bold tracking-tight">New Post</h1>
+  <LinkTo @route="posts" class="btn-secondary">Back</LinkTo>
+</div>
 
 <PostForm @onSave={{this.create}} />
-
-<LinkTo @route="posts">Cancel</LinkTo>
