@@ -20,5 +20,7 @@ setupDeprecationWorkflow({
      */
     /* example: */
     /* { handler: 'silence', matchId: 'template-action' }, */
+    { handler: "silence", matchId: "warp-drive.deprecate-tracking-package" },
+    { handler: "silence", matchId: "deprecate-import-libraries-from-ember" }
   ]
 })

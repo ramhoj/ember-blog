@@ -6,7 +6,7 @@
 </div>
 
 <ul class="space-y-3">
-  {{#each this.model.posts as |post|}}
+  {{#each this.model as |post|}}
     <li data-test-post class="card">
       <div class="card-body flex items-center justify-between">
         <LinkTo @route="post" @model={{post.id}} class="font-medium hover:underline">

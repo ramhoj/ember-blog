@@ -3,16 +3,16 @@ import { service } from "@ember/service"
 import { action } from "@ember/object"
 
 export default class PostsEditController extends Controller {
-  @service posts
   @service router
 
-  @action update({ title, body }) {
-    this.posts.update(this.model.id, { title, body })
+  @action async update(attributes) {
+    Object.assign(this.model, attributes)
+    await this.model.save()
     this.router.transitionTo("post", this.model.id)
   }
 
-  @action delete() {
-    this.posts.destroy(this.model.id)
+  @action async delete() {
+    await this.model.destroyRecord()
     this.router.transitionTo("posts")
   }
 }

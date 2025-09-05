@@ -1,0 +1,40 @@
+/* Keep QUnit visible at a fixed width on the left */
+#qunit {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 25%;
+  height: 100vh;
+  overflow: auto;
+  background: #fff;
+  z-index: 9999;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 5%);
+}
+
+/* App under test fills the rest of the viewport to the right */
+#ember-testing-container {
+  position: fixed !important;
+  inset: 0 0 0 360px; /* top right bottom left; matches #qunit width */
+  width: auto !important;
+  height: auto !important;
+  min-height: 100vh;
+  overflow: auto !important;
+  background: #fff;
+}
+
+/* Disable the default tiny/scaled frame */
+#ember-testing {
+  transform: none !important;
+  position: static !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* Hide the default fixture wrapper spacing */
+#qunit-fixture {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  background: transparent !important;
+}

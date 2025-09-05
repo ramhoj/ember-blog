@@ -2,9 +2,9 @@ import Route from "@ember/routing/route"
 import { service } from "@ember/service"
 
 export default class PostScopedRoute extends Route {
-  @service posts
+  @service store
 
   model({ id }) {
-    return this.posts.find(id)
+    return this.store.findRecord("post", id)
   }
 }
