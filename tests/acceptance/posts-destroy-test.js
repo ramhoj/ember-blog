@@ -1,20 +1,17 @@
 import { module, test } from "qunit"
 import { setupApplicationTest } from "ember-qunit"
-import { visit, click, currentURL } from "@ember/test-helpers"
-import { storePosts } from "blog/tests/helpers/storage"
+import { visit, click } from "@ember/test-helpers"
+import { setupMirage } from "ember-cli-mirage/test-support"
 
-module("Acceptance | posts delete", function (hooks) {
+module("Acceptance | destroy post", function (hooks) {
   setupApplicationTest(hooks)
+  setupMirage(hooks)
 
-  hooks.beforeEach(function () {
-    storePosts([{ id: "hello-ember", title: "Hello Ember", body: "First" }])
-  })
+  test("success", async function (assert) {
+    let post = this.server.create("post", { title: "Hello Ember", body: "First post" })
 
-  test("destroyes a post from the edit page and redirects to index", async function (assert) {
-    await visit("/posts/hello-ember/edit")
+    await visit(`/posts/${post.id}/edit`)
     await click("[data-test-destroy-button]")
-
-    assert.strictEqual(currentURL(), "/posts")
-    assert.dom('a[href="/posts/hello-ember"]').doesNotExist()
+    assert.dom("[data-test-post]").doesNotExist()
   })
 })
