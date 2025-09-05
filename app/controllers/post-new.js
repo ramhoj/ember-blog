@@ -3,11 +3,13 @@ import { service } from "@ember/service"
 import { action } from "@ember/object"
 
 export default class PostsNewController extends Controller {
-  @service posts
+  @service store
   @service router
 
-  @action create({ title, body }) {
-    let created = this.posts.create({ title, body })
-    this.router.transitionTo("post", created.id)
+  @action async create({ title, body }) {
+    let record = this.store.createRecord("post", { title, body })
+
+    await record.save()
+    this.router.transitionTo("post", record.id)
   }
 }

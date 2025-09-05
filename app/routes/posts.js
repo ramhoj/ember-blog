@@ -2,9 +2,9 @@ import Route from "@ember/routing/route"
 import { service } from "@ember/service"
 
 export default class PostsRoute extends Route {
-  @service posts
+  @service store
 
   model() {
-    return this.posts
+    return this.store.findAll("post")
   }
 }
