@@ -5,8 +5,12 @@
   <LinkTo @route="post-new" class="btn-primary">New Post</LinkTo>
 </div>
 
+<div class="mb-4">
+  <input type="search" name="q" {{on "input" this.updateQuery}} value={{this.q}} placeholder="Search posts…" aria-label="Search posts" class="input">
+</div>
+
 <ul class="space-y-3">
-  {{#each this.model as |post|}}
+  {{#each this.filteredPosts as |post|}}
     <li data-test-post class="card">
       <div class="card-body flex items-center justify-between">
         <LinkTo @route="post" @model={{post.id}} class="font-medium hover:underline">
