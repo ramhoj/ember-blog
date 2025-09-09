@@ -1,2 +1,2 @@
 import PostScopedRoute from "./concerns/post-scoped"
-export default class PostEditRoute extends PostScopedRoute { }
+export default class PostEditRoute extends PostScopedRoute {}

@@ -8,26 +8,57 @@
 
 /* Base: colors, fonts, global rhythm */
 @layer base {
-  html { color-scheme: light dark }
-  body { @apply bg-slate-50 text-slate-800 antialiased }
+  html {
+    color-scheme: light dark;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-800 antialiased;
+  }
+
+  .posts-container mark {
+    @apply font-bold bg-transparent text-inherit;
+  }
 }
 
 /* Components: small, reusable building blocks */
 @layer components {
-  .container-page { @apply max-w-3xl mx-auto px-4 py-8 }
+  .container-page {
+    @apply max-w-3xl mx-auto px-4 py-8;
+  }
 
-  .btn { @apply inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 }
-  .btn-primary { @apply btn bg-slate-900 text-white hover:bg-slate-800 }
-  .btn-secondary { @apply btn bg-white text-slate-900 border border-slate-300 hover:bg-slate-50 }
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400;
+  }
 
-  .input { @apply w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 }
-  .textarea { @apply input min-h-[8rem] }
+  .btn-primary {
+    @apply btn bg-slate-900 text-white hover:bg-slate-800;
+  }
 
-  .card { @apply rounded-lg border border-slate-200 bg-white shadow-sm }
-  .card-body { @apply p-4 }
+  .btn-secondary {
+    @apply btn bg-white text-slate-900 border border-slate-300 hover:bg-slate-50;
+  }
+
+  .input {
+    @apply w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400;
+  }
+
+  .textarea {
+    @apply input min-h-[8rem];
+  }
+
+  .card {
+    @apply rounded-lg border border-slate-200 bg-white shadow-sm;
+  }
+
+  .card-body {
+    @apply p-4;
+  }
 }
 
 /* Utilities: tiny one-offs you’ll reuse */
 @layer utilities {
-  .muted { @apply text-slate-500 }
+  .muted {
+    @apply text-slate-500;
+  }
 }
