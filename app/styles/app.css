@@ -10,6 +10,8 @@
 @layer base {
   html { color-scheme: light dark }
   body { @apply bg-slate-50 text-slate-800 antialiased }
+
+  .posts-container mark { @apply font-bold bg-transparent text-inherit; }
 }
 
 /* Components: small, reusable building blocks */

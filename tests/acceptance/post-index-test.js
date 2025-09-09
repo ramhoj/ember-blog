@@ -30,6 +30,9 @@ module("Acceptance | list posts", function (hooks) {
 
     await fillIn("[name=q]", "A")
     assert.dom("[data-test-post]").exists({ count: 2 })
+
+    await fillIn("[name=q]", "Alp")
+    assert.dom("mark").hasText("Alp", "highlights the matching text")
   })
 
   test("filtered via url", async function (assert) {
