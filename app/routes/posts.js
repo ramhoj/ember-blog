@@ -3,7 +3,7 @@ import { service } from "@ember/service"
 
 export default class PostsRoute extends Route {
   @service store
-  queryParams = { q: { refreshModel: false, replace: true}}
+  queryParams = { q: { refreshModel: false, replace: true } }
 
   async model({ q }) {
     return this.store.query("post", q ? { q } : {})

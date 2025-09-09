@@ -11,10 +11,7 @@ module.exports = function (defaults) {
       compile: {
         enabled: true,
         cacheInclude: [/\.(css|hbs|js|ts)$/i, /tailwind\.config\.js$/],
-        plugins: [
-          require("tailwindcss")("./tailwind.config.js"),
-          require("autoprefixer")
-        ]
+        plugins: [require("tailwindcss")("./tailwind.config.js"), require("autoprefixer")]
       }
     },
     emberData: {

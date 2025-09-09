@@ -45,7 +45,7 @@ module("Acceptance | list posts", function (hooks) {
     assert.dom("[data-test-post]").exists({ count: 2 })
   })
 
-  test("preserves focus", async function(assert) {
+  test("preserves focus", async function (assert) {
     this.server.timing = 200
     this.server.createList("post", 2)
 
@@ -56,19 +56,19 @@ module("Acceptance | list posts", function (hooks) {
     assert.dom('input[name="q"]').isFocused()
   })
 
-  test("restartable: last search wins", async function(assert) {
+  test("restartable: last search wins", async function (assert) {
     this.server.timing = 200
     this.server.create("post", { title: "Alpha" })
     this.server.create("post", { title: "Beta" })
 
     await visit("/posts")
-    await fillIn('input[name="q"]', "a")   // request 1
-    await fillIn('input[name="q"]', "be")  // request 2 (cancels 1)
+    await fillIn('input[name="q"]', "a") // request 1
+    await fillIn('input[name="q"]', "be") // request 2 (cancels 1)
     assert.dom("[data-test-post]").exists({ count: 1 })
     assert.dom("[data-test-post]").includesText("Beta")
   })
 
-  test("clear search query", async function(assert) {
+  test("clear search query", async function (assert) {
     this.server.create("post", { title: "Alpha" })
     this.server.create("post", { title: "Beta" })
 

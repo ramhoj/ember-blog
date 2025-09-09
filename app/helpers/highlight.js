@@ -2,8 +2,9 @@ import { helper } from "@ember/component/helper"
 import { htmlSafe } from "@ember/template"
 
 function escapeHtml(str = "") {
-  return String(str).replace(/[&<>"']/g, (char) =>
-    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char])
+  return String(str).replace(
+    /[&<>"']/g,
+    (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]
   )
 }
 

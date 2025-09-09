@@ -5,5 +5,3 @@ module.exports = {
     "at-rule-no-unknown": null
   }
 }
-
-

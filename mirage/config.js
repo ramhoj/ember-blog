@@ -1,5 +1,5 @@
 import {
-  discoverEmberDataModels,
+  discoverEmberDataModels
   // applyEmberDataSerializers,
 } from "ember-cli-mirage"
 import { createServer } from "miragejs"
@@ -14,7 +14,7 @@ export default function (config) {
     },
     // uncomment to opt into ember-cli-mirage to auto discover ember serializers
     // serializers: applyEmberDataSerializers(config.serializers),
-    routes,
+    routes
   }
 
   return createServer(finalConfig)
@@ -27,8 +27,8 @@ function routes() {
   this.get("/posts", (schema, request) => {
     let q = (request.queryParams.q || "").toLowerCase()
     if (!q) return schema.posts.all()
-    return schema.posts.where(post =>
-      post.title.toLowerCase().includes(q) || (post.body || "").toLowerCase().includes(q)
+    return schema.posts.where(
+      (post) => post.title.toLowerCase().includes(q) || (post.body || "").toLowerCase().includes(q)
     )
   })
 
