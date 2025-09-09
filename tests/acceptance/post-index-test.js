@@ -1,6 +1,6 @@
 import { module, test } from "qunit"
 import { setupApplicationTest } from "ember-qunit"
-import { visit, fillIn } from "@ember/test-helpers"
+import { visit, fillIn, settled } from "@ember/test-helpers"
 import { setupMirage } from "ember-cli-mirage/test-support"
 
 module("Acceptance | list posts", function (hooks) {
@@ -38,6 +38,30 @@ module("Acceptance | list posts", function (hooks) {
     this.server.create("post", { title: "Echo", body: "three" })
 
     await visit("/posts?q=A")
+    assert.dom('input[name="q"]').hasValue("A")
     assert.dom("[data-test-post]").exists({ count: 2 })
+  })
+
+  test("preserves focus", async function(assert) {
+    this.server.timing = 200
+    this.server.createList("post", 2)
+
+    await visit("/posts")
+    await fillIn('input[name="q"]', "a")
+    assert.dom('input[name="q"]').isFocused()
+    await settled()
+    assert.dom('input[name="q"]').isFocused()
+  })
+
+  test("restartable: last search wins", async function(assert) {
+    this.server.timing = 200
+    this.server.create("post", { title: "Alpha" })
+    this.server.create("post", { title: "Beta" })
+
+    await visit("/posts")
+    await fillIn('input[name="q"]', "a")   // request 1
+    await fillIn('input[name="q"]', "be")  // request 2 (cancels 1)
+    assert.dom("[data-test-post]").exists({ count: 1 })
+    assert.dom("[data-test-post]").includesText("Beta")
   })
 })
