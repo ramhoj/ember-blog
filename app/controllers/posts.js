@@ -9,14 +9,12 @@ export default class PostsController extends Controller {
   queryParams = [{ q: { replace: true } }]
 
   @tracked q = ""
-  @tracked qInput = ""
   @tracked rows = []
 
   searchTask = restartableTask(async (event) => {
-    this.qInput = event.target.value
-    this.q = this.qInput
+    this.q = event.target.value
     let params = this.q ? { q: this.q } : {}
     let results = await this.store.query("post", params)
-    this.rows = results
+    this.model = results
   })
 }
