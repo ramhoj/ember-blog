@@ -24,7 +24,14 @@ function routes() {
   this.urlPrefix = "http://localhost:3000"
   this.timing = 0
 
-  this.get("/posts")
+  this.get("/posts", (schema, request) => {
+    let q = (request.queryParams.q || "").toLowerCase()
+    if (!q) return schema.posts.all()
+    return schema.posts.where(post =>
+      post.title.toLowerCase().includes(q) || (post.body || "").toLowerCase().includes(q)
+    )
+  })
+
   this.post("/posts")
   this.get("/posts/:id")
   this.put("/posts/:id")
