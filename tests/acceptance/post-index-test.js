@@ -7,6 +7,12 @@ module("Acceptance | list posts", function (hooks) {
   setupApplicationTest(hooks)
   setupMirage(hooks)
 
+  test("unpopulated", async function (assert) {
+    await visit("/posts")
+    assert.dom("[data-test-post]").doesNotExist()
+    assert.dom("[data-test-no-posts]").exists()
+  })
+
   test("populated", async function (assert) {
     this.server.createList("post", 2)
 
