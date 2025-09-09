@@ -5,16 +5,16 @@ import { restartableTask } from "ember-concurrency"
 
 export default class PostsController extends Controller {
   @service store
+  @tracked q = ""
 
   queryParams = [{ q: { replace: true } }]
 
-  @tracked q = ""
-  @tracked rows = []
-
   searchTask = restartableTask(async (event) => {
     this.q = event.target.value
-    let params = this.q ? { q: this.q } : {}
-    let results = await this.store.query("post", params)
-    this.model = results
+    return await this.store.query("post", { q: this.q || "" })
   })
+
+  get posts() {
+    return this.searchTask.lastSuccessful?.value ?? this.model
+  }
 }
