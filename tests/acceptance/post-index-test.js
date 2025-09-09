@@ -1,6 +1,6 @@
 import { module, test } from "qunit"
 import { setupApplicationTest } from "ember-qunit"
-import { visit, fillIn, settled } from "@ember/test-helpers"
+import { visit, fillIn, settled, click } from "@ember/test-helpers"
 import { setupMirage } from "ember-cli-mirage/test-support"
 
 module("Acceptance | list posts", function (hooks) {
@@ -63,5 +63,17 @@ module("Acceptance | list posts", function (hooks) {
     await fillIn('input[name="q"]', "be")  // request 2 (cancels 1)
     assert.dom("[data-test-post]").exists({ count: 1 })
     assert.dom("[data-test-post]").includesText("Beta")
+  })
+
+  test("clear search query", async function(assert) {
+    this.server.create("post", { title: "Alpha" })
+    this.server.create("post", { title: "Beta" })
+
+    await visit("/posts")
+    await fillIn('input[name="q"]', "a")
+    await click("[data-test-clear-search]")
+
+    assert.dom('input[name="q"]').hasValue("")
+    assert.dom("[data-test-post]").exists({ count: 2 })
   })
 })

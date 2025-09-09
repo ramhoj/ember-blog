@@ -6,6 +6,15 @@
 </div>
 
 <div class="mb-4 flex items-center justify-between">
+  <button
+    {{on "click" (fn (perform this.searchTask) (hash target=(hash value="")))}}
+    type="button"
+    class="btn-secondary ml-2"
+    data-test-clear-search
+  >
+    Clear
+  </button>
+
   <input
     type="search"
     name="q"
