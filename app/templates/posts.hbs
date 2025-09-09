@@ -5,7 +5,7 @@
   <LinkTo @route="post-new" class="btn-primary">New Post</LinkTo>
 </div>
 
-<div class="mb-4">
+<div class="mb-4 flex items-center justify-between">
   <input
     type="search"
     name="q"
@@ -13,7 +13,14 @@
     value={{this.q}}
     placeholder="Search posts…"
     aria-label="Search posts"
-    class="input">
+    class="input"
+  >
+
+  {{#if this.searchTask.isRunning}}
+    <span class="ml-3 text-sm muted animate-pulse" role="status" aria-live="polite">
+      Searching…
+    </span>
+  {{/if}}
 </div>
 
 <ul class="space-y-3">
