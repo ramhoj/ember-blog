@@ -32,18 +32,24 @@
   {{/if}}
 </div>
 
-{{#if this.posts.length}}
-  <ul class="space-y-3">
-    {{#each this.posts as |post|}}
-      <li data-test-post class="card">
-        <div class="card-body flex items-center justify-between">
-          <LinkTo @route="post" @model={{post.id}} class="font-medium hover:underline">
-            {{post.title}}
-          </LinkTo>
-        </div>
-      </li>
-    {{/each}}
-  </ul>
-{{else}}
-  <p class="text-sm muted" data-test-no-posts>No posts found</p>
-{{/if}}
+<section aria-busy={{this.searchTask.isRunning}}>
+  {{#if this.posts.length}}
+    <ul class="space-y-3">
+      {{#each this.posts as |post|}}
+        <li data-test-post class="card">
+          <div class="card-body flex items-center justify-between">
+            <LinkTo @route="post" @model={{post.id}} class="font-medium hover:underline">
+              {{post.title}}
+            </LinkTo>
+          </div>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p class="text-sm muted" data-test-no-posts>No posts found</p>
+  {{/if}}
+
+  {{#if this.searchTask.last?.error}}
+    <p class="text-red-600 text-sm mt-2">Search failed. Please try again.</p>
+  {{/if}}
+</section>
