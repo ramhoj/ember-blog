@@ -31,10 +31,20 @@ function routes() {
       (post) => post.title.toLowerCase().includes(q) || (post.body || "").toLowerCase().includes(q)
     )
   })
-
   this.post("/posts")
   this.get("/posts/:id")
   this.put("/posts/:id")
   this.patch("/posts/:id")
   this.del("/posts/:id")
+
+  this.get("/posts/:id/comments", (schema, request) => {
+    return schema.comments.where({ postId: request.params.id })
+  })
+
+  this.post("/posts/:id/comments", (schema, request) => {
+    let postId = request.params.id
+    let attrs = JSON.parse(request.requestBody).comment
+
+    return schema.comments.create({ ...attrs, postId })
+  })
 }

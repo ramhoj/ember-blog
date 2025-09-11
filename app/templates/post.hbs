@@ -14,4 +14,22 @@
   </div>
 </div>
 
+<div class="card mt-6">
+  <div class="card-body">
+    <h3 class="font-semibold mb-2">Comments</h3>
+
+    {{#if this.comments.length}}
+      <ul class="space-y-3">
+        {{#each this.comments as |comment|}}
+          <li data-test-comment>
+            <p class="text-sm">{{comment.body}}</p>
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p class="muted" data-test-no-comments>No comments yet</p>
+    {{/if}}
+  </div>
+</div>
+
 {{outlet}}
