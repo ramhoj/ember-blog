@@ -2,23 +2,19 @@
   <div>
     {{#if this.isEditing}}
       <form {{on "submit" this.save}}>
-        <Textarea class="textarea" @value={{@comment.body}} />
+        <Textarea class="textarea" @value={{@comment.body}} required />
         <button type="submit" class="btn-primary">Save</button>
+        <button type="button" class="btn-secondary" {{on "click" this.cancelEdit}}>Cancel</button>
       </form>
     {{else}}
       <p class="text-sm">{{@comment.body}}</p>
     {{/if}}
 
-    <div class="flex justify-between text-xs text-slate-500">
-      {{#if this.isEditing}}
-        <button type="button" class="btn-secondary" {{on "click" this.cancelEdit}}>Cancel</button>
-      {{else}}
-        <button type="button" class="btn-secondary" {{on "click" this.edit}}>Edit</button>
-      {{/if}}
-
-      <small>
-        {{format-date @comment.createdAt}}
-      </small>
-    </div>
+    {{#unless this.isEditing}}
+      <div class="flex justify-between text-xs text-slate-500">
+        <button type="button" class="btn-link" {{on "click" this.edit}}>Edit</button>
+        <small>{{format-date @comment.createdAt}}</small>
+      </div>
+    {{/unless}}
   </div>
 </li>
