@@ -22,7 +22,15 @@
       <ul class="space-y-3">
         {{#each this.comments as |comment|}}
           <li data-test-comment>
-            <p class="text-sm">{{comment.body}}</p>
+            <div>
+              <p class="text-sm">
+                {{comment.body}}
+              </p>
+
+              <small class="text-xxsm text-slate-500">
+                {{format-date comment.createdAt}}
+              </small>
+            </div>
           </li>
         {{/each}}
       </ul>
