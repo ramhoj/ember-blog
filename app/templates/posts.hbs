@@ -38,7 +38,7 @@
   {{#if this.posts.length}}
     <ul class="space-y-3">
       {{#each this.posts as |post|}}
-        <Post @post={{post}} />
+        <Post @post={{post}} @q={{this.q}} />
       {{/each}}
     </ul>
   {{else}}
