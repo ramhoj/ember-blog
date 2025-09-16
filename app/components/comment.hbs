@@ -2,7 +2,14 @@
   <div>
     {{#if this.isEditing}}
       <form {{on "submit" this.save}}>
-        <Textarea class="textarea" @value={{@comment.body}} required />
+        <textarea
+          class="textarea"
+          value={{@comment.body}}
+          {{on "input" this.updateBody}}
+          aria-label="Edit comment"
+          required
+        />
+
         <button type="submit" class="btn-primary">Save</button>
         <button type="button" class="btn-secondary" {{on "click" this.cancelEdit}}>Cancel</button>
       </form>

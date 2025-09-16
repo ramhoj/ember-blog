@@ -14,6 +14,10 @@ export default class CommentComponent extends Component {
     this.isEditing = false
   }
 
+  @action updateBody(event) {
+    this.args.comment.body = event.target.value
+  }
+
   @action async save(event) {
     event?.preventDefault()
     this.args.comment.post = this.args.post
