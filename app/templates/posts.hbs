@@ -38,16 +38,7 @@
   {{#if this.posts.length}}
     <ul class="space-y-3">
       {{#each this.posts as |post|}}
-        <li data-test-post class="card">
-          <LinkTo @route="post" @model={{post.id}} class="font-medium hover:underline">
-            <div class="card-body flex items-center justify-between">
-              {{highlight post.title this.q}}
-              <small class="text-xxsm text-slate-500">
-                {{format-date post.createdAt}}
-              </small>
-            </div>
-          </LinkTo>
-        </li>
+        <Post @post={{post}} />
       {{/each}}
     </ul>
   {{else}}
