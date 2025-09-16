@@ -6,7 +6,18 @@ export default class CommentAdapter extends ApplicationAdapter {
   }
 
   urlForCreateRecord(modelName, snapshot) {
-    let postId = snapshot.belongsTo("post", { id: true })
-    return `${this.host ?? ""}/posts/${postId}/comments`
+    return `${this.host ?? ""}/posts/${this.#postId(snapshot)}/comments`
+  }
+
+  urlForUpdateRecord(id, modelName, snapshot) {
+    return `${this.host ?? ""}/posts/${this.#postId(snapshot)}/comments/${id}`
+  }
+
+  urlForDeleteRecord(id, modelName, snapshot) {
+    return `${this.host ?? ""}/posts/${this.#postId(snapshot)}/comments/${id}`
+  }
+
+  #postId(snapshot) {
+    return snapshot.belongsTo("post", { id: true })
   }
 }

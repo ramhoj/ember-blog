@@ -37,14 +37,20 @@ function routes() {
   this.patch("/posts/:id")
   this.del("/posts/:id")
 
-  this.get("/posts/:id/comments", (schema, request) => {
-    return schema.comments.where({ postId: request.params.id })
+  this.get("/posts/:postId/comments", (schema, req) => {
+    return schema.comments.where({ postId: req.params.postId })
   })
-
-  this.post("/posts/:id/comments", (schema, request) => {
-    let postId = request.params.id
-    let attrs = JSON.parse(request.requestBody).comment
-
-    return schema.comments.create({ ...attrs, postId })
+  this.post("/posts/:postId/comments", (schema, req) => {
+    let { comment } = JSON.parse(req.requestBody)
+    return schema.comments.create({ ...comment, postId: req.params.postId })
   })
+  this.patch("/posts/:postId/comments/:id", (schema, req) => {
+    let { comment } = JSON.parse(req.requestBody)
+    return schema.comments.find(req.params.id).update(comment)
+  })
+  this.put("/posts/:postId/comments/:id", (schema, req) => {
+    let { comment } = JSON.parse(req.requestBody)
+    return schema.comments.find(req.params.id).update(comment)
+  })
+  this.del("/posts/:postId/comments/:id")
 }

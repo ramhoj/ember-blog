@@ -21,7 +21,7 @@
     {{#if this.comments.length}}
       <ul class="space-y-3">
         {{#each this.comments as |comment|}}
-          <Comment @comment={{comment}} />
+          <Comment @comment={{comment}} @post={{this.model}} />
         {{/each}}
       </ul>
     {{else}}

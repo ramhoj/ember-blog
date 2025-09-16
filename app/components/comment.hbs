@@ -1,11 +1,24 @@
 <li data-test-comment>
   <div>
-    <p class="text-sm">
-      {{@comment.body}}
-    </p>
+    {{#if this.isEditing}}
+      <form {{on "submit" this.save}}>
+        <Textarea class="textarea" @value={{@comment.body}} />
+        <button type="submit" class="btn-primary">Save</button>
+      </form>
+    {{else}}
+      <p class="text-sm">{{@comment.body}}</p>
+    {{/if}}
 
-    <small class="text-xxsm text-slate-500">
-      {{format-date @comment.createdAt}}
-    </small>
+    <div class="flex justify-between text-xs text-slate-500">
+      {{#if this.isEditing}}
+        <button type="button" class="btn-secondary" {{on "click" this.cancelEdit}}>Cancel</button>
+      {{else}}
+        <button type="button" class="btn-secondary" {{on "click" this.edit}}>Edit</button>
+      {{/if}}
+
+      <small>
+        {{format-date @comment.createdAt}}
+      </small>
+    </div>
   </div>
 </li>
