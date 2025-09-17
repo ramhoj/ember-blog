@@ -31,7 +31,10 @@
 
   <div class="card-body">
     <h3 class="font-semibold mb-2">Add a comment</h3>
-    <CommentForm @onSave={{this.createComment}} />
+    <label>
+      <span class="sr-only">Comment body</span>
+      <CommentForm @onSave={{this.createComment}} />
+    </label>
   </div>
 </div>
 

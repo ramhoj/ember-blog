@@ -1,19 +1,11 @@
 <li data-test-comment>
   <div>
     {{#if this.isEditing}}
-      <form {{on "submit" this.save}}>
-        <textarea
-          class="textarea"
-          name="body"
-          value={{@comment.body}}
-          {{on "input" this.updateBody}}
-          aria-label="Edit comment"
-          required
-        />
-
-        <button type="submit" class="btn-primary">Save</button>
-        <button type="button" class="btn-secondary" {{on "click" this.cancelEdit}}>Cancel</button>
-      </form>
+      <label>
+        <span class="sr-only">Comment body</span>
+        <CommentForm @onSave={{this.update}} @comment={{@comment}} />
+      </label>
+      <button type="button" class="btn-secondary" {{on "click" this.cancelEdit}}>Cancel</button>
     {{else}}
       <p class="text-sm" data-test-comment-body>{{@comment.body}}</p>
     {{/if}}

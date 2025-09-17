@@ -7,15 +7,16 @@ export default class CommentFormComponent extends Component {
 
   constructor() {
     super(...arguments)
-    this.body = this.args.model?.body ?? ""
+    this.body = this.args.comment?.body ?? ""
   }
 
   @action updateBody(event) {
     this.body = event.target.value
   }
 
-  @action submit(event) {
+  @action async submit(event) {
     event.preventDefault()
-    this.args.onSave({ body: this.body })
+    await this.args.onSave({ body: this.body })
+    this.body = ""
   }
 }
