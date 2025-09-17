@@ -1,6 +1,7 @@
 import Component from "@glimmer/component"
 import { tracked } from "@glimmer/tracking"
 import { action } from "@ember/object"
+import { task } from "ember-concurrency"
 
 export default class CommentFormComponent extends Component {
   @tracked body = ""
@@ -14,9 +15,9 @@ export default class CommentFormComponent extends Component {
     this.body = event.target.value
   }
 
-  @action async submit(event) {
+  submitTask = task(async (event) => {
     event.preventDefault()
     await this.args.onSave({ body: this.body })
     this.body = ""
-  }
+  })
 }

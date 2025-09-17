@@ -1,7 +1,21 @@
-<form {{on "submit" this.submit}} class="space-y-4">
-  <textarea id="body" name="body" value={{this.body}} {{on "input" this.updateBody}} class="textarea" required />
+<form {{on "submit" (perform this.submitTask)}} class="space-y-4">
+  <textarea
+    id="body"
+    name="body"
+    value={{this.body}}
+    {{on "input" this.updateBody}}
+    class="textarea"
+    required
+  />
 
   <div class="flex items-center gap-2">
-    <button type="submit" class="btn-primary">Save</button>
+    <button
+      type="submit"
+      disabled={{this.submitTask.isRunning}}
+      aria-busy={{this.submitTask.isRunning}}
+      class="btn-primary"
+    >
+      Save
+    </button>
   </div>
 </form>
