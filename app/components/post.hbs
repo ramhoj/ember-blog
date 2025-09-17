@@ -1,0 +1,11 @@
+<li data-test-post class="card">
+  <LinkTo @route="post" @model={{@post.id}} class="font-medium hover:underline">
+    <div class="card-body flex items-center justify-between">
+      {{highlight @post.title @q}}
+
+      <small class="text-xs text-slate-500">
+        {{format-date @post.createdAt}}
+      </small>
+    </div>
+  </LinkTo>
+</li>

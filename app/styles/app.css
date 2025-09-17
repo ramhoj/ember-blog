@@ -39,6 +39,11 @@
     @apply btn bg-white text-slate-900 border border-slate-300 hover:bg-slate-50;
   }
 
+  .btn-link {
+    @apply inline p-0 bg-transparent border-0 text-slate-600 hover:underline font-normal;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded;
+  }
+
   .input {
     @apply w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400;
   }

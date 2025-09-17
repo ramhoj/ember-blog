@@ -27,6 +27,7 @@ function routes() {
   this.get("/posts", (schema, request) => {
     let q = (request.queryParams.q || "").toLowerCase()
     if (!q) return schema.posts.all()
+
     return schema.posts.where(
       (post) => post.title.toLowerCase().includes(q) || (post.body || "").toLowerCase().includes(q)
     )
@@ -37,14 +38,20 @@ function routes() {
   this.patch("/posts/:id")
   this.del("/posts/:id")
 
-  this.get("/posts/:id/comments", (schema, request) => {
-    return schema.comments.where({ postId: request.params.id })
+  this.del("/posts/:postId/comments/:id")
+  this.get("/posts/:postId/comments", (schema, req) => {
+    return schema.comments.where({ postId: req.params.postId })
   })
-
-  this.post("/posts/:id/comments", (schema, request) => {
-    let postId = request.params.id
-    let attrs = JSON.parse(request.requestBody).comment
-
-    return schema.comments.create({ ...attrs, postId })
+  this.post("/posts/:postId/comments", (schema, req) => {
+    let { comment } = JSON.parse(req.requestBody)
+    return schema.comments.create({ ...comment, postId: req.params.postId })
+  })
+  this.put("/posts/:postId/comments/:id", (schema, req) => {
+    let { comment } = JSON.parse(req.requestBody)
+    return schema.comments.find(req.params.id).update({ body: comment.body })
+  })
+  this.patch("/posts/:postId/comments/:id", (schema, req) => {
+    let { comment } = JSON.parse(req.requestBody)
+    return schema.comments.find(req.params.id).update({ body: comment.body })
   })
 }
