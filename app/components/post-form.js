@@ -1,6 +1,7 @@
 import Component from "@glimmer/component"
 import { tracked } from "@glimmer/tracking"
 import { action } from "@ember/object"
+import { task } from "ember-concurrency"
 
 export default class PostFormComponent extends Component {
   @tracked title = ""
@@ -20,10 +21,10 @@ export default class PostFormComponent extends Component {
     this.body = event.target.value
   }
 
-  @action submit(event) {
+  submitTask = task(async (event) => {
     event.preventDefault()
-    this.args.onSave({ title: this.title, body: this.body })
-  }
+    await this.args.onSave({ title: this.title, body: this.body })
+  })
 
   @action delete() {
     this.args.onDelete()
