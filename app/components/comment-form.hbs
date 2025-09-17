@@ -1,0 +1,15 @@
+<form {{on "submit" this.submit}} class="space-y-4">
+  <textarea
+    id="body"
+    name="body"
+    value={{@model.body}}
+    {{on "input" this.updateBody}}
+    class="textarea"
+    aria-label="Add comment"
+    required
+  />
+
+  <div class="flex items-center gap-2">
+    <button type="submit" class="btn-primary">Save</button>
+  </div>
+</form>

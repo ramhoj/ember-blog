@@ -28,6 +28,11 @@
       <p class="muted" data-test-no-comments>No comments yet</p>
     {{/if}}
   </div>
+
+  <div class="card-body">
+    <h3 class="font-semibold mb-2">Add a comment</h3>
+    <CommentForm @onSave={{this.createComment}} />
+  </div>
 </div>
 
 {{outlet}}

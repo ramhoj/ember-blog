@@ -44,7 +44,7 @@ function routes() {
   })
   this.post("/posts/:postId/comments", (schema, req) => {
     let { comment } = JSON.parse(req.requestBody)
-    return schema.comments.create({ ...comment, postId: req.params.postId })
+    return schema.comments.create({ body: comment.body, postId: req.params.postId })
   })
   this.put("/posts/:postId/comments/:id", (schema, req) => {
     let { comment } = JSON.parse(req.requestBody)
